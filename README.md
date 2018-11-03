@@ -1,2 +1,2 @@
 # AdvancedFunctionPresentation
-Powershell Presentation on Advanced Functions
+PowerShell Presentation on Advanced Functions
