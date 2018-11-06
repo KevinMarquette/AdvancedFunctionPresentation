@@ -18,6 +18,11 @@ function Write-GreenDate
 Write-GreenDate
 
 
+# about names
+
+Get-Verb | Out-GridView
+
+
 # parameters
 function Write-Green
 {
@@ -132,5 +137,7 @@ $shortcuts | ForEach-Object {
 
 
 cleanup
+
+
 # end of file
 

@@ -25,6 +25,66 @@ Test-Parameters -Last Marquette -First Kevin
 Test-Parameters
 Test-Parameters -Last Marquette
 
+
+# Validate parameters
+function Test-Number
+{
+    [CmdletBinding()]
+    param(
+        [ValidateRange(100,200)]
+        $Number
+    )
+
+    "Good number: $number"
+}
+
+Test-Number 1
+Test-Number 133
+Test-Number 999
+
+Test-Number
+
+
+#Validate Set
+function Test-Set
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(
+            Mandatory = $true
+        )]
+        [ValidateSet('Green','Red','Blue')]
+        $Color
+    )
+
+    "Your color: $color"
+}
+
+Test-Set -Color Red
+Test-Set -Color Yellow
+
+# Show more validate sets
+function Test-AllVaidateAttributes
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(
+            Mandatory = $true
+        )]
+        [ValidateCount(1)]
+        [ValidateLength(0,10)]
+        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('regex')]
+        [ValidateSet('Green','Red','Blue')]
+        [ValidateScript({$_ -eq $true})]
+        $InputObject
+    )
+}
+
+
+# Parameter sets
+
 function Test-ParameterSet
 {
     [CmdletBinding(DefaultParameterSetName='Name')]
@@ -97,7 +157,9 @@ function Test-ConfirmImpact
 
 Test-ConfirmImpact
 
+# adjustable confirm impact level
 $ConfirmPreference
+
 
 # Use of ShouldContinue and Force
 function Test-Confirm

@@ -13,36 +13,18 @@ code .\part3.ps1
 # Create New-Shortcut with pipeline
 code .\part4.ps1
 
+# snippets
+code .\snippet.json
+code .\testsnippet.ps1
+
+# create a module (if time)
+# https://kevinmarquette.github.io/2017-05-27-Powershell-module-building-basics/?utm_source=blog&utm_medium=blog&utm_content=tags
 
 
 cleanup
 
-## parameter basics
-### value vs reference types
 
-# noun verb naming
-Get-Verb
-
-# comment based help
-## description, examples
-# cmdletbinding
-# verbose
-# what if
-# debug
-# parameters
-## type
-### switch
-## comment based help
-## mandatory, position, help text
-# parameter sets
-## Validate
-## aliases
-## pipeline
-## begin, process, end
 ### show execution order on pipeline
-## blocking vs non-blocking pipelines
-
-# modules
 
 # Bad Examples:
 ## Too many parameters
