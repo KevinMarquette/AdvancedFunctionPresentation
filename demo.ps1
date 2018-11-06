@@ -1,13 +1,29 @@
-# intro to functions
-## pipeline output
-## return
+# demo prep
+. .\demo-prep.ps1
+
+# into to functions and creating shortcuts
+code .\part1.ps1
+
+# output and return values
+code .\part2.ps1
+
+# Advanced function features
+code .\part3.ps1
+
+# Create New-Shortcut with pipeline
+code .\part4.ps1
+
+
+
+cleanup
+
 ## parameter basics
-### value vs refference types
+### value vs reference types
 
 # noun verb naming
 Get-Verb
 
-# comment bassed help
+# comment based help
 ## description, examples
 # cmdletbinding
 # verbose
