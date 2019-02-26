@@ -27,3 +27,5 @@ code .\new-shortcut.ps1
 
 # example if needed:
 code .\new-shortcut.example.ps1
+
+code .\new-shortcut.Tests.ps1

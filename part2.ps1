@@ -82,7 +82,6 @@ function Test-Message
     param(
         [Switch]$SkipThrow
     )
-
     "First value in pipeline"
     Write-Output "Second value in Pipeline"
     Write-Host "Direct to host message" -ForegroundColor Green
@@ -120,7 +119,7 @@ $data
 # Write-Host Output Stream Redirect
 
 $data = Test-Message -SkipThrow *>&1
-$data[4]
+$data[5]
 
 # Debug
 
@@ -197,4 +196,6 @@ function Test-Return2
 }
 
 Test-Return2
+
+#end of file
 

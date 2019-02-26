@@ -6,11 +6,8 @@ function Test-Parameters
 {
     [CmdletBinding()]
     param(
-        [Parameter(
-            Mandatory = $true
-        )]
-        [String]
-        $First,
+        [Parameter(Mandatory)]
+        [String] $First,
 
         [String]
         $Last
@@ -19,9 +16,9 @@ function Test-Parameters
     "$First $Last"
 }
 
-Test-Parameters Kevin Marquette
-Test-Parameters -First Kevin -Last Marquette
-Test-Parameters -Last Marquette -First Kevin
+Test-Parameters 'Kevin' 'Marquette'
+Test-Parameters -First 'Kevin' -Last 'Marquette'
+Test-Parameters -Last 'Marquette' -First 'Kevin'
 
 Test-Parameters
 Test-Parameters -Last Marquette
@@ -76,7 +73,7 @@ function Test-AllVaidateAttributes
         [ValidateLength(0,10)]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidatePattern('regex')]
+        [ValidatePattern('\w*')]
         [ValidateSet('Green','Red','Blue')]
         [ValidateScript({$_ -eq $true})]
         $InputObject
@@ -88,7 +85,7 @@ function Test-AllVaidateAttributes
 
 function Test-ParameterSet
 {
-    [CmdletBinding(DefaultParameterSetName='Name')]
+    [CmdletBinding()]
     param(
         [Parameter(
             Mandatory,
@@ -113,7 +110,8 @@ function Test-ParameterSet
 }
 
 Test-ParameterSet -ComputerName localhost -Description 'my computername'
-Test-ParameterSet -ComputerName 127.0.0.1 -Description 'my IP'
+Test-ParameterSet -IpAddress 127.0.0.1 -Description 'my IP'
+Test-ParameterSet -IpAddress 127.0.0.1 -ComputerName localhost -Description 'my IP'
 
 Test-ParameterSet DefaultParameterSet
 
@@ -121,7 +119,7 @@ Test-ParameterSet DefaultParameterSet
 
 function Test-WhatIf
 {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param()
 
     Write-Verbose "Start function"
@@ -270,7 +268,7 @@ function Test-InputObject
 
 $data = 'Green','Red','Blue'
 $data | Test-InputObject -Verbose
-Test-InputObject $data -Verbose
+Test-InputObject -InputObject $data -Verbose
 
 
 # Pipeline by Property Name
@@ -321,7 +319,7 @@ function Test-PipelineByAlias
 {
     [CmdletBinding()]
     param(
-        [Alias('FirstName')]
+        [Alias('FirstName','FN')]
         [Parameter(
             ValueFromPipelineByPropertyName
         )]
@@ -367,6 +365,9 @@ function Test-Help
 
     Shows the help for this function
 
+    .PARAMETER FirstName
+     The first name of our customer
+
     .NOTES
     This help can to before the function, but I find it better inside.
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
@@ -374,7 +375,7 @@ function Test-Help
     #>
     [CmdletBinding()]
     param(
-        # The first name of the customer
+        
         [string]
         $FirstName,
 

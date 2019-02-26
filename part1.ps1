@@ -94,12 +94,15 @@ function New-Shortcut
 {
     param( $TargetFile, $ShortcutFile )
 
-    $WScriptShell = New-Object -ComObject WScript.Shell
-    $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
-    $Shortcut.TargetPath = $TargetFile
-
-    Write-Verbose "Saving [$ShortcutFile]" -Verbose:$true
-    $Shortcut.Save()
+    if (Test-Path $TargetFile)
+    {
+        $WScriptShell = New-Object -ComObject WScript.Shell
+        $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+        $Shortcut.TargetPath = $TargetFile
+    
+        Write-Verbose "Saving [$ShortcutFile]" -Verbose:$true
+        $Shortcut.Save()
+    }
 }
 
 
